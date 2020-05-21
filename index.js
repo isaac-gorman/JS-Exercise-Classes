@@ -85,21 +85,20 @@ class Car {
     this.odometer = 0;
   }
   fill(gallons){
-    this.tank = gallons + this.tank;
-    return this.tank;
+    this.tank += gallons;
   }
 
   drive(distance){
-    this.odometer = this.odometer + distance;
-    let precentageOfMPG = distance/this.milesPerGallon;
-    this.tank = this.tank - precentageOfMPG;
-    if (this.tank === distance){
-      // this.tank = 0;
-      return `I ran out of fuel at ${this.odometer} miles!!`;
+    if (distance/ this.milesPerGallon > this.tank){
+      this.drive(this.milesPerGallon * this.tank);
+      return `I ran out of fuel at ${this.odometer} miles!!`;  
+    } else {
+      this.odometer = this.odometer + distance;
+      let precentageOfMPG = distance/this.milesPerGallon;
+      this.tank = this.tank - precentageOfMPG;
     }
-// how to add a break setTimer()
-  }
 
+  }
 }
 
 /*
